@@ -1,0 +1,11 @@
+version: "3.2"
+services:
+
+  chocolate:
+    image: chocolateyfest/appetizer:1.0.0
+    ports:
+      - 8080:8080
+    deploy:
+      placement:
+        constraints:
+          - node.platform.os == windows

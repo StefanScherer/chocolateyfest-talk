@@ -1,0 +1,11 @@
+{
+  "name": "appetizer",
+  "version": "1.0.0",
+  "description": "Show one random chocolate image.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stefan Scherer",
+  "license": "Apache-2.0"
+}
