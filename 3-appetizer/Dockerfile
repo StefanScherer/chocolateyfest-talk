@@ -4,7 +4,7 @@ COPY img img
 COPY package.json package.json
 RUN npm install --production
 COPY app.js app.js
-FROM chocolateyfest/node:pure
+FROM chocolateyfest/node:runtime
 WORKDIR /app
 COPY --from=0 /app /app
 EXPOSE 8080
