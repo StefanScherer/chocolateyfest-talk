@@ -7,5 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Stefan Scherer",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "dependencies": {
+    "jimp": "0.5.3"
+  }
 }
