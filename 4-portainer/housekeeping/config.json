@@ -1,0 +1,11 @@
+{
+        "psFormat": "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}",
+        "imagesFormat": "table {{.Repository}}:{{.Tag}}\\t{{.Size}}",
+        "pluginsFormat": "table {{.ID}}\t{{.Name}}\t{{.Enabled}}",
+        "statsFormat": "table {{.Container}}\t{{.CPUPerc}}\t{{.MemUsage}}",
+        "serviceInspectFormat": "pretty",
+        "servicesFormat": "table {{.ID}}\t{{.Name}}\t{{.Mode}}\t{{.Replicas}}\t{{.Ports}}",
+        "secretFormat": "table {{.ID}}\t{{.Name}}\t{{.CreatedAt}}\t{{.UpdatedAt}}",
+        "configFormat": "table {{.ID}}\t{{.Name}}\t{{.CreatedAt}}\t{{.UpdatedAt}}",
+        "nodesFormat": "table {{.ID}}\t{{.Hostname}}\t{{.Availability}}\t{{.ManagerStatus}}"
+}
