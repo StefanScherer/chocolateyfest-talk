@@ -1,3 +1,3 @@
-FROM mcr.microsoft.com/windowsservercore-insider:10.0.17744.1001
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 RUN powershell iex(iwr -useb https://chocolatey.org/install.ps1)
