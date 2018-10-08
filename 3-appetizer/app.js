@@ -22,10 +22,13 @@ Jimp.read(path).then(image => {
   Jimp.loadFont(Jimp.FONT_SANS_32_BLACK).then(black => {
     Jimp.loadFont(Jimp.FONT_SANS_32_WHITE).then(white => {
       console.log('Got font');
+
+      const text = `${os.hostname()}`;
+
       image
         .scaleToFit(800, 600)
-        .print(black, 10, 10, os.hostname())
-        .print(white, 8, 8, os.hostname())
+        .print(black, 10, 10, text)
+        .print(white, 8, 8, text)
         .quality(98) // set JPEG quality
         .getBuffer(Jimp.MIME_JPEG, (err, data) => {
           console.log(`Listening on port ${port} serving file ${file}.`);
