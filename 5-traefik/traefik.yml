@@ -1,0 +1,46 @@
+version: "3.3"
+services:
+
+  traefik:
+    image: stefanscherer/traefik-windows:v1.7.9
+    command:
+      - "--api"
+      - "--entrypoints=Name:http Address::80 Redirect.EntryPoint:https"
+      - "--entrypoints=Name:https Address::443 TLS"
+      - "--defaultentrypoints=http,https"
+
+      - "--docker.endpoint=npipe:////./pipe/docker_engine"
+
+      - "--acme"
+      - "--acme.storage=C:/acme/certs.json"
+      - "--acme.entryPoint=https"
+      - "--acme.httpChallenge.entryPoint=http"
+      - "--acme.onHostRule=true"
+      - "--acme.onDemand=false"
+      - "--acme.email=YOUR@EMAIL.ADDRESS"
+      # - "--acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory"
+      - "--docker"
+      - "--docker.swarmMode"
+      - "--docker.domain=YOUR.DOMAIN"
+      - "--docker.watch"
+      - "--logLevel=DEBUG"
+    ports:
+      - "80:80"     #The HTTP port
+      - "8080:8080" #The Web UI (enabled by --api)
+      - "443:443"
+
+    volumes:
+      - traefik_prod_certs:C:/acme
+
+      - type: npipe
+        source: \\.\pipe\docker_engine
+        target: \\.\pipe\docker_engine
+
+    deploy:
+      placement:
+        constraints: [node.role==manager]
+      restart_policy:
+        condition: on-failure
+
+volumes:
+  traefik_prod_certs: {}

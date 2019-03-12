@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+
+  appetizer:
+    image: chocolateyfest/appetizer:1.2.0
+    deploy:
+      labels:
+        - "traefik.backend.loadbalancer.sticky=true"
+        - "traefik.backend.loadbalancer.swarm=true"
+        - "traefik.backend=appetizer"
+        - "traefik.entrypoints=https"
+        - "traefik.frontend.passHostHeader=true"
+        - "traefik.frontend.rule=Host:appetizer.YOUR.DOMAIN"
+        - "traefik.port=8080"
+      restart_policy:
+        condition: on-failure

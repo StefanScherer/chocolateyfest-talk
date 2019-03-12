@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+
+  whoami:
+    image: stefanscherer/whoami:latest
+    deploy:
+      labels:
+        - "traefik.backend.loadbalancer.sticky=true"
+        - "traefik.backend.loadbalancer.swarm=true"
+        - "traefik.backend=whoami"
+        - "traefik.entrypoints=https"
+        - "traefik.frontend.passHostHeader=true"
+        - "traefik.frontend.rule=Host:YOUR.DOMAIN"
+        - "traefik.port=8080"
+      restart_policy:
+        condition: on-failure

@@ -1,0 +1,28 @@
+version: "3.3"
+services:
+
+  portainer:
+    image: stefanscherer/portainer:1.20.1-1809
+    volumes:
+      - portainer_data:C:/data
+
+      - type: npipe
+        source: \\.\pipe\docker_engine
+        target: \\.\pipe\docker_engine
+
+    deploy:
+      labels:
+        - "traefik.backend.loadbalancer.sticky=true"
+        - "traefik.backend.loadbalancer.swarm=true"
+        - "traefik.backend=portainer"
+        - "traefik.entrypoints=https"
+        - "traefik.frontend.passHostHeader=true"
+        - "traefik.frontend.rule=Host:portainer.YOUR.DOMAIN"
+        - "traefik.port=9000"
+      placement:
+        constraints: [node.role==manager]
+      restart_policy:
+        condition: on-failure
+
+volumes:
+  portainer_data: {}
